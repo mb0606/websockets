@@ -8,10 +8,23 @@
 </head>
 <body>
 
+  <button>Send hello</button>
   <script>
-  var socket = new Websocket("wss//echo.websocket.org");
-  socket.onopen = function(event) {
-    console.log("event",event)
+  var sock = new WebSocket("ws://localhost:5001");
+  sock.onopen = function(event) {
+    alert("Socket connected successfully");
+    setTimeout(function(){
+    sock.send(JSON.stringify({name:"Jerry", message: "Hey there"}))
+  }, 1000)
+  }
+
+ 
+  sock.onmessage = function(event){
+    console.log(event.data);
+  }
+
+  document.querySelector('button').onclick = function(){
+    sock.send("Hello")
   }
   </script>
   
