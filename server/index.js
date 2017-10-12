@@ -3,11 +3,11 @@ var s = new server({port:5001}, console.log("ws server"));
 
 s.on('connection', function(ws){
   ws.on('message', function(message){
-    console.log("Recieved: ",message);
-
+    console.log("Received: ",message);
     if(message == "Hello"){
       ws.send("Hey there from server!");
     }
+    ws.send(message);
 
   })
 })
